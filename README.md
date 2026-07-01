@@ -1,51 +1,13 @@
 # RAD BMX Builds
 
-Static marketing site for RAD BMX Builds that mirrors the content of radbmxbuilds.com minus the store, with a dedicated merch page powered by an embedded, third-party Buy Button.
+Static marketing site. Live at radbmxbuilds.com. No build step, no framework — plain HTML/CSS/JS served from the repo root by GitHub Pages.
 
-No build step, no package manager, no framework. Just HTML, CSS, and JS served directly from the repo root by GitHub Pages.
-
-## Local preview
-
-From the repo root:
-
-```
-python3 -m http.server
-```
-
-Then open http://localhost:8000 in a browser. All assets resolve via relative paths, so the site works identically locally and on GitHub Pages.
-
-## Deploy
-
-1. Push this repo to GitHub on the `main` branch.
-2. In the repo on GitHub: **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save.
-4. Under **Custom domain**, enter `radbmxbuilds.com`. The `CNAME` file is already committed at the repo root.
-5. Wait for the DNS + TLS check to finish, then tick **Enforce HTTPS**.
-
-DNS for the apex `radbmxbuilds.com` should point at GitHub Pages' A records:
-
-```
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-```
-
-## Project layout
-
-```
-index.html        # Home
-merch.html        # Merch (embeds the merch partner's Buy Button)
-css/              # Stylesheets (styles.css)
-js/               # Client JS (main.js — mobile menu toggle)
-logos/            # Brand assets (logos, banner art)
-CNAME             # Custom domain declaration for GitHub Pages
-docs/snippets/    # Canonical HTML fragments (header, footer, buyButton — inlined into pages)
-```
+- **Preview:** `python3 -m http.server` → http://localhost:8000 (assets use relative paths, so local matches production)
+- **Deploy:** push to `main` — Pages serves `main` / root. The custom domain is set via the committed `CNAME`.
 
 ## Regenerating brand assets
 
-`favicon.ico`, `apple-touch-icon.png`, and `og-image.png` at the repo root are derived from the source art in `logos/`. They're regenerated with the single Python block below. Pillow is required and is installed on demand via `uv` — no project virtualenv needed. Last regenerated with **Pillow 12.2.0**.
+`favicon.ico`, `apple-touch-icon.png`, and `og-image.png` at the repo root are derived from the source art in `logos/`. Regenerate them with the single Python block below. Pillow is pulled on demand via `uv` — no project virtualenv needed. Last regenerated with **Pillow 12.2.0**.
 
 ```bash
 uv run --with pillow python3 - <<'PY'
@@ -95,6 +57,6 @@ sips -g pixelWidth -g pixelHeight apple-touch-icon.png   # -> 180 x 180
 sips -g pixelWidth -g pixelHeight og-image.png           # -> 1200 x 630
 ```
 
-## Third-party dependencies
+## Buy Button
 
-The merch page embeds a third-party Buy Button from the merch partner's hosted SDK (`buy-button/latest/...`). That URL is intentionally **unpinned** (`/latest/`) — it's the vendor's documented distribution pattern and we don't control it. If the merch widget ever renders oddly or stops loading, check the vendor's Buy Button changelog first before digging into local code. The storefront access token in `docs/snippets/buyButton.html` is a **public** storefront token (safe to commit); do not swap in an admin/private API key.
+The merch page embeds a third-party Buy Button from the merch partner's hosted SDK (`buy-button/latest/...`), intentionally **unpinned** (`/latest/`) per the vendor's distribution pattern. If the widget renders oddly or stops loading, check the vendor's changelog first. The storefront access token in `docs/snippets/buyButton.html` is a **public** storefront token (safe to commit) — do not swap in an admin/private API key.
