@@ -7,28 +7,29 @@
   <title>Page not found | RAD BMX Builds</title>
   <meta name="robots" content="noindex">
 
-  <!-- Root-absolute asset paths: GitHub Pages serves this file for ANY unknown
-       URL (including deep paths), so relative paths would resolve wrong. These
-       assume the site is served at the domain root (the apex custom domain). -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- Relative asset paths (same convention as index.html / merch.html) so this
+       page styles correctly both under the project URL
+       (radbmxbuilds.github.io/radbmx/…) and the apex custom domain. The browser
+       resolves these against the requested URL, which is correct for top-level
+       unknown paths — all this flat, two-page site has. -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="theme-color" content="#2B2F33">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;600;700&display=swap">
 
-  <link rel="stylesheet" href="/css/styles.css">
-  <script src="/js/main.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
 </head>
 <body>
-<!-- Shared header — mirrors docs/snippets/header.html, but with root-absolute
-     paths (see head note) and no active nav item. -->
+<!-- Shared header — mirrors docs/snippets/header.html, with no active nav item. -->
 <header class="site-header">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-header__inner">
-    <a class="site-brand" href="/index.html" aria-label="RAD BMX Builds home">
-      <img class="site-brand__mark" src="/logos/image0.png" alt="RAD BMX Builds" width="48" height="48">
+    <a class="site-brand" href="index.html" aria-label="RAD BMX Builds home">
+      <img class="site-brand__mark" src="logos/image0.png" alt="RAD BMX Builds" width="48" height="48">
     </a>
     <nav aria-label="Primary">
       <button
@@ -43,10 +44,10 @@
       </button>
       <ul id="primary-nav" class="primary-nav">
         <li class="primary-nav__item">
-          <a class="nav-link" href="/index.html">Home</a>
+          <a class="nav-link" href="index.html">Home</a>
         </li>
         <li class="primary-nav__item">
-          <a class="nav-link nav-link--merch" href="/merch.html">Merch</a>
+          <a class="nav-link nav-link--merch" href="merch.html">Merch</a>
         </li>
       </ul>
     </nav>
@@ -61,8 +62,8 @@
       <h1 class="hero__headline">404 &mdash; Wiped out.</h1>
       <p class="hero__subhead">That page took a spill. Let&rsquo;s get you back on the bike.</p>
       <div class="hero__ctas">
-        <a class="btn btn--primary" href="/index.html">Back to Home &rarr;</a>
-        <a class="btn btn--ghost" href="/merch.html">Shop Merch</a>
+        <a class="btn btn--primary" href="index.html">Back to Home &rarr;</a>
+        <a class="btn btn--ghost" href="merch.html">Shop Merch</a>
       </div>
     </div>
   </section>
