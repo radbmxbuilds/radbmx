@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Merch | RAD BMX Builds</title>
+  <meta name="description" content="Shirts, hats, stickers, hoodies. Shop RAD BMX Builds merch. Orders are fulfilled fast by our merch partner.">
+
+  <!-- Favicons (generated from logos/image0.png - see README) -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Theme color - matches the ink header so mobile browser chrome blends in -->
+  <meta name="theme-color" content="#2B2F33">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://radbmxbuilds.com/merch.html">
+  <meta property="og:title" content="Merch | RAD BMX Builds">
+  <meta property="og:description" content="Shirts, hats, stickers, hoodies. Shop RAD BMX Builds merch. Orders are fulfilled fast by our merch partner.">
+  <meta property="og:image" content="https://radbmxbuilds.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="RAD BMX Builds logo">
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Merch | RAD BMX Builds">
+  <meta name="twitter:description" content="Shirts, hats, stickers, hoodies. Shop RAD BMX Builds merch. Orders are fulfilled fast by our merch partner.">
+  <meta name="twitter:image" content="https://radbmxbuilds.com/og-image.png">
+
+  <!-- Google Fonts: Alfa Slab One (display) + Work Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;600;700&display=swap">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+<!-- ============================================================================
+     Shared header - copied verbatim from docs/snippets/header.html.
+     Merch link is marked active on this page (class="is-active" aria-current="page").
+     ============================================================================ -->
+<header class="site-header">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-header__inner">
+    <a class="site-brand" href="index.html" aria-label="RAD BMX Builds home">
+      <img class="site-brand__mark" src="logos/image0.png" alt="RAD BMX Builds" width="48" height="48">
+    </a>
+    <nav aria-label="Primary">
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Toggle menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul id="primary-nav" class="primary-nav">
+        <li class="primary-nav__item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="primary-nav__item">
+          <a class="nav-link nav-link--merch is-active" href="merch.html" aria-current="page">Merch</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ==========================================================================
+       Page heading + intro - ink background for visual continuity with the
+       home hero. Pink eyebrow + cyan underline accent carry the zine motif
+       without introducing any store-adjacent UI (no buttons, no cart icons).
+       ========================================================================== -->
+  <section class="merch-page-header section">
+    <div class="container merch-page-header__inner">
+      <p class="merch-page-header__eyebrow">The store</p>
+      <h1 class="merch-page-header__heading">Merch.</h1>
+      <span class="merch-page-header__rule" aria-hidden="true"></span>
+      <p class="merch-page-header__intro">
+        Shirts, hats, stickers, hoodies. Orders are fulfilled fast by our merch partner.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Merch Buy Button - container + <script> copied verbatim from
+       docs/snippets/buyButton.html (domain, storefrontAccessToken, collection
+       id, and the entire options object are unchanged). Container is empty
+       by design; the merch partner's SDK populates it on load. If the SDK is
+       blocked or slow, the rest of the page (header, heading, intro, footer)
+       still renders normally - see SPEC.md R4 "Page renders independently of
+       the embed's state."
+       ========================================================================== -->
+  <section class="merch-shop">
+    <div class="container">
+      <div id='collection-component-1609863705674'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'bunker-branding-co.myshopify.com',
+      storefrontAccessToken: '72c671d7c3491483642f8be588482f83',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('collection', {
+        id: '198588137603',
+        node: document.getElementById('collection-component-1609863705674'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px",
+          "width": "calc(25% - 20px)"
+        },
+        "img": {
+          "height": "calc(100% - 15px)",
+          "position": "absolute",
+          "left": "0",
+          "right": "0",
+          "top": "0"
+        },
+        "imgWrapper": {
+          "padding-top": "calc(75% + 15px)",
+          "position": "relative",
+          "height": "0"
+        }
+      },
+      "title": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "16px",
+        "color": "#282828"
+      },
+      "button": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "17px",
+        "padding-top": "16.5px",
+        "padding-bottom": "16.5px",
+        ":hover": {
+          "background-color": "#000000"
+        },
+        "background-color": "#000000",
+        ":focus": {
+          "background-color": "#000000"
+        },
+        "border-radius": "0px",
+        "padding-left": "20px",
+        "padding-right": "20px"
+      },
+      "quantityInput": {
+        "font-size": "17px",
+        "padding-top": "16.5px",
+        "padding-bottom": "16.5px"
+      },
+      "price": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "18px",
+        "color": "#7e7e7e"
+      },
+      "compareAt": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "15.299999999999999px",
+        "color": "#7e7e7e"
+      },
+      "unitPrice": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "15.299999999999999px",
+        "color": "#7e7e7e"
+      }
+    },
+    "buttonDestination": "modal",
+    "contents": {
+      "options": false
+    },
+    "text": {
+      "button": "View product"
+    },
+    "googleFonts": [
+      "Karla"
+    ]
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "17px",
+        "padding-top": "16.5px",
+        "padding-bottom": "16.5px",
+        ":hover": {
+          "background-color": "#000000"
+        },
+        "background-color": "#000000",
+        ":focus": {
+          "background-color": "#000000"
+        },
+        "border-radius": "0px",
+        "padding-left": "20px",
+        "padding-right": "20px"
+      },
+      "quantityInput": {
+        "font-size": "17px",
+        "padding-top": "16.5px",
+        "padding-bottom": "16.5px"
+      },
+      "title": {
+        "font-family": "Karla, sans-serif",
+        "font-weight": "normal"
+      },
+      "price": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "20px"
+      },
+      "compareAt": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "17px"
+      },
+      "unitPrice": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "17px"
+      },
+      "description": {
+        "font-family": "Karla, sans-serif"
+      }
+    },
+    "googleFonts": [
+      "Karla"
+    ]
+  },
+  "option": {
+    "styles": {
+      "label": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "17px"
+      },
+      "select": {
+        "font-family": "Karla, sans-serif"
+      }
+    },
+    "googleFonts": [
+      "Karla"
+    ]
+  },
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Karla, sans-serif",
+        "font-size": "17px",
+        "padding-top": "16.5px",
+        "padding-bottom": "16.5px",
+        ":hover": {
+          "background-color": "#000000"
+        },
+        "background-color": "#000000",
+        ":focus": {
+          "background-color": "#000000"
+        },
+        "border-radius": "0px"
+      },
+      "title": {
+        "color": "#4c4c4c"
+      },
+      "header": {
+        "color": "#4c4c4c"
+      },
+      "lineItems": {
+        "color": "#4c4c4c"
+      },
+      "subtotalText": {
+        "color": "#4c4c4c"
+      },
+      "subtotal": {
+        "color": "#4c4c4c"
+      },
+      "notice": {
+        "color": "#4c4c4c"
+      },
+      "currency": {
+        "color": "#4c4c4c"
+      },
+      "close": {
+        "color": "#4c4c4c",
+        ":hover": {
+          "color": "#4c4c4c"
+        }
+      },
+      "empty": {
+        "color": "#4c4c4c"
+      },
+      "noteDescription": {
+        "color": "#4c4c4c"
+      },
+      "discountText": {
+        "color": "#4c4c4c"
+      },
+      "discountIcon": {
+        "fill": "#4c4c4c"
+      },
+      "discountAmount": {
+        "color": "#4c4c4c"
+      }
+    },
+    "googleFonts": [
+      "Karla"
+    ]
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Karla, sans-serif",
+        "background-color": "#000000",
+        ":hover": {
+          "background-color": "#000000"
+        },
+        ":focus": {
+          "background-color": "#000000"
+        }
+      },
+      "count": {
+        "font-size": "17px"
+      }
+    },
+    "googleFonts": [
+      "Karla"
+    ]
+  },
+  "lineItem": {
+    "styles": {
+      "variantTitle": {
+        "color": "#4c4c4c"
+      },
+      "title": {
+        "color": "#4c4c4c"
+      },
+      "price": {
+        "color": "#4c4c4c"
+      },
+      "fullPrice": {
+        "color": "#4c4c4c"
+      },
+      "discount": {
+        "color": "#4c4c4c"
+      },
+      "discountIcon": {
+        "fill": "#4c4c4c"
+      },
+      "quantity": {
+        "color": "#4c4c4c"
+      },
+      "quantityIncrement": {
+        "color": "#4c4c4c",
+        "border-color": "#4c4c4c"
+      },
+      "quantityDecrement": {
+        "color": "#4c4c4c",
+        "border-color": "#4c4c4c"
+      },
+      "quantityInput": {
+        "color": "#4c4c4c",
+        "border-color": "#4c4c4c"
+      }
+    }
+  }
+},
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================================
+     Shared footer - copied verbatim from docs/snippets/footer.html.
+     ============================================================================ -->
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a class="site-footer__email" href="mailto:sean@radbmxbuilds.com">Email Sean &rarr;</a>
+
+    <ul class="social-links" aria-label="Social media">
+      <li>
+        <a class="social-link"
+           href="https://www.instagram.com/rad_bmx_builds/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="RAD BMX Builds on Instagram">
+          <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="social-link"
+           href="https://www.youtube.com/c/RadBMXBuilds"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="RAD BMX Builds on YouTube">
+          <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="2" y="5" width="20" height="14" rx="3" ry="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <polygon points="10,9 16,12 10,15" fill="currentColor"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="social-link"
+           href="https://www.tiktok.com/@rad_bmx_builds"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="RAD BMX Builds on TikTok">
+          <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <text x="12" y="16" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="11" fill="currentColor">TT</text>
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="social-link"
+           href="https://www.facebook.com/people/Rad-BMX-Builds/100064343102548/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="RAD BMX Builds on Facebook">
+          <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="12" y="16" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="13" fill="currentColor">f</text>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="social-link"
+           href="https://radbmxbuildspodcast.podbean.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="RAD BMX Builds podcast on Podbean">
+          <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 13 a4 4 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 13 a6 6 0 0 1 12 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+
+    <p class="site-footer__copy">&copy; RAD BMX Builds</p>
+  </div>
+</footer>
+</body>
+</html>

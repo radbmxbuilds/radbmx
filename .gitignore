@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Misc (defensive — this project has no Node toolchain)
+node_modules/
+
+# AI / agent workflow artifacts (not part of the served site)
+.claude/
+CLAUDE.md
+SPEC.md
+tasks/
+docs/design/

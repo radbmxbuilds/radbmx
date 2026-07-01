@@ -1,0 +1,1143 @@
+/* ==========================================================================
+   RAD BMX Builds — main stylesheet (foundation)
+   --------------------------------------------------------------------------
+   This file establishes the design-system foundation only: palette, type,
+   reset/base, breakpoints, and layout utilities. Component styles
+   (header, hero, footer, buttons, etc.) live further down the build in
+   later task sections and should be appended below this foundation.
+
+   Design source of truth: SPEC.md Design Direction. Palette hex values
+   were sampled from the banner logo and are LOCKED — do not "correct"
+   them to look more saturated / on-trend.
+
+   Fonts are loaded via <link> tags in each HTML page's <head> (see block
+   below). @import is intentionally NOT used here because it blocks
+   parallel downloads and delays first paint.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Google Fonts — HTML <head> block (copy into index.html and merch.html)
+   --------------------------------------------------------------------------
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;600;700&display=swap">
+
+   Alfa Slab One ships in a single weight (400). Work Sans is loaded at
+   400 (body), 600 (emphasis), 700 (strong / nav).
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Brand palette commentary
+   --------------------------------------------------------------------------
+   Pink (#ED2B85) and Cyan (#4FC8EF) are CO-EQUAL primary brand accents.
+   Neither is "the" primary — they alternate by context (e.g. primary CTA
+   may be pink on one section and cyan on another, per zine aesthetic).
+   Do not promote one over the other in future edits.
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Palette */
+  --color-pink: #ED2B85;       /* co-primary brand accent */
+  --color-cyan: #4FC8EF;       /* co-primary brand accent */
+  --color-ink: #2B2F33;        /* warm charcoal — text, outlines (NOT pure black) */
+  --color-paper: #FFFFFF;      /* crisp backgrounds, highlights */
+  --color-cream: #F5F1E8;      /* optional warm off-white for large section fills */
+  --color-ink-soft: #3A3E44;   /* derived — dividers, low-weight borders */
+
+  /* Typography */
+  --font-display: "Alfa Slab One", Georgia, serif;
+  --font-body: "Work Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Spacing scale — used by sections and components */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  /* Layout */
+  --container-max: 1200px;
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoints (mobile-first):
+     base:    <=767px   — default styles, no media query
+     tablet:  @media (min-width: 768px)
+     desktop: @media (min-width: 1200px)
+   -------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   Reset / base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* prevent iOS auto-upscale on orientation change */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit; /* style per-context in component sections */
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  margin: 0; /* sections own vertical rhythm */
+}
+
+/* --------------------------------------------------------------------------
+   Reduced-motion respect — scaffold only. Any transition/animation we
+   add later should be wrapped in or overridden by this block so users
+   who prefer reduced motion get a calmer experience.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Layout utilities
+   ========================================================================== */
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.section {
+  padding-block: 3rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 2rem;
+  }
+
+  .section {
+    padding-block: 5rem;
+  }
+}
+
+/* ==========================================================================
+   Section 3 — Shared Header, Nav, and Footer
+   --------------------------------------------------------------------------
+   Everything below this divider is Section 3 component CSS. It depends on
+   the foundation above (custom properties, reset, layout utilities) but
+   does NOT modify it. Safe to delete as a block if the header/footer are
+   ever rebuilt from scratch.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Skip link — first focusable element on every page. Visually hidden
+   until focused by keyboard; becomes a prominent pink pill when focused.
+   -------------------------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 0.875rem;
+  background: var(--color-cyan); /* cyan on ink text = ~8:1 (AA); pink + ink failed AA */
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  /* Visually hide without removing from the a11y tree. */
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  white-space: normal;
+  top: var(--space-1);
+  left: var(--space-1);
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Site header — sticky, ink background, paper text. Establishes the
+   zine-aesthetic contrast before the user scrolls one pixel.
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-bottom: 2px solid var(--color-ink-soft);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 0.75rem 1.25rem;
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-brand__mark {
+  max-height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile menu toggle — hamburger built from three spans. Hidden at
+   tablet+ where the nav is always visible.
+   -------------------------------------------------------------------------- */
+
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2.5rem;
+  height: 2rem;
+  padding: 0.375rem;
+  background: transparent;
+  border: 2px solid var(--color-paper);
+  border-radius: 4px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+.nav-toggle__bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Primary nav — mobile-first.
+     base (<768px): hidden by default; when [data-menu-open] on the <ul>,
+                    it drops down below the header as a full-width panel.
+     tablet+:       inline on the right; toggle is hidden.
+   -------------------------------------------------------------------------- */
+
+.primary-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none; /* hidden at mobile until opened */
+}
+
+.primary-nav[data-menu-open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-ink);
+  padding: var(--space-2) 1.25rem var(--space-3);
+  border-bottom: 2px solid var(--color-ink-soft);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.primary-nav__item {
+  display: block;
+}
+
+/* Nav link base */
+.nav-link {
+  display: inline-block;
+  padding: 0.625rem 0.875rem;
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  font-weight: 400; /* Alfa Slab One ships at 400 */
+  border-bottom: 3px solid transparent; /* reserve space so hover doesn't shift layout */
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  border-bottom-color: var(--color-cyan);
+  outline: none;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+/* Active page — scoped to nav links only (belt and braces: class OR aria). */
+.primary-nav .nav-link.is-active,
+.primary-nav .nav-link[aria-current="page"] {
+  border-bottom-color: var(--color-pink);
+  border-bottom-width: 3px;
+}
+
+/* Merch link — CTA hierarchy: merch nav wins over Home visually.
+   font-size 1.1875rem (19px) at weight 700 qualifies as WCAG "large bold"
+   (≥14pt bold), so pink-on-ink at ~3.4:1 passes AA for large text. */
+.nav-link--merch {
+  background: var(--color-pink);
+  color: var(--color-ink);
+  border-bottom-color: transparent;
+  font-weight: 700;
+  font-size: 1.1875rem;
+}
+
+.nav-link--merch:hover,
+.nav-link--merch:focus-visible {
+  background: var(--color-cyan);
+  color: var(--color-ink);
+  border-bottom-color: transparent;
+}
+
+/* When merch link is active, keep the pink fill and add an ink underline
+   accent so the active state is still distinguishable from hover. */
+.primary-nav .nav-link--merch.is-active,
+.primary-nav .nav-link--merch[aria-current="page"] {
+  background: var(--color-pink);
+  color: var(--color-ink);
+  box-shadow: inset 0 -3px 0 0 var(--color-ink);
+  border-bottom-color: transparent;
+}
+
+/* Tablet+ — inline nav, hide hamburger. */
+@media (min-width: 768px) {
+  .site-brand__mark {
+    max-height: 48px;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .primary-nav,
+  .primary-nav[data-menu-open] {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-2);
+    position: static;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Pill shape for the merch CTA at tablet+. */
+  .nav-link--merch {
+    border-radius: 999px;
+    padding-inline: 1.125rem;
+  }
+}
+
+/* ==========================================================================
+   Site footer
+   ========================================================================== */
+
+.site-footer {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding-block: var(--space-6);
+  margin-top: var(--space-8);
+  border-top: 2px solid var(--color-ink-soft);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.site-footer__email {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.25rem;
+  color: var(--color-paper); /* paper on ink = 16.5:1 — pink-on-ink fails AA */
+  text-decoration: none;
+  border-bottom: 3px solid var(--color-pink); /* pink kept as accent only, not as text color */
+}
+
+.site-footer__email:hover,
+.site-footer__email:focus-visible {
+  color: var(--color-paper);
+  border-bottom-color: var(--color-cyan);
+  outline: none;
+}
+
+.site-footer__email:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+.social-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 2px solid var(--color-ink-soft);
+  color: var(--color-paper);
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.social-link:hover {
+  background: var(--color-pink);
+  color: var(--color-ink);
+  border-color: var(--color-pink);
+}
+
+.social-link:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+  background: var(--color-cyan);
+  color: var(--color-ink);
+  border-color: var(--color-cyan);
+}
+
+.social-link__icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.site-footer__copy {
+  margin: 0;
+  font-size: 0.875rem;
+  /* Light warm gray — readable on ink at ~9:1. Hex fallback for Safari <16.2
+     (ink-soft on ink is ~1.1:1 and was nearly invisible there). color-mix
+     override below gives modern browsers the derived value. */
+  color: #B5B6B8;
+  color: color-mix(in srgb, var(--color-paper) 65%, var(--color-ink));
+}
+
+@media (min-width: 768px) {
+  .site-footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .social-links {
+    justify-content: flex-end;
+  }
+
+  .site-footer__copy {
+    flex-basis: 100%;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   Section 5 — Home page components
+   --------------------------------------------------------------------------
+   Styles below are scoped to the home page (index.html). Order matches
+   the home page section order: buttons, hero, merch block, about,
+   watch+listen cards, follow strip. Safe to delete as a block if the
+   home page is ever rebuilt.
+   ========================================================================== */
+
+/* ==== Buttons ========================================================== */
+/* Boxy, tracked, display-font buttons sized for the zine aesthetic.
+   Hierarchy enforced at the CSS level:
+     .btn--primary  > .btn--ghost  (primary has a solid fill + larger padding)
+     .btn--xl       adds a further size bump for the merch-block CTA
+   This hierarchy is SPEC-level (R2, CTA hierarchy) — do not flatten. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1.1;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+/* Primary — solid pink fill on ink, readable and loud. Pink > cyan here
+   because the hero background is ink, so pink has more pop. */
+.btn--primary {
+  background: var(--color-pink);
+  color: var(--color-ink);
+  border-color: var(--color-pink);
+  /* Visibly larger than .btn--ghost: more padding + larger type. */
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--color-cyan);
+  border-color: var(--color-cyan);
+  color: var(--color-ink);
+}
+
+/* Variant used on cyan backgrounds (merch block): invert the fill so the
+   button still contrasts. Ink fill on cyan = strongest possible weight. */
+.btn--on-cyan {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+
+.btn--on-cyan:hover,
+.btn--on-cyan:focus-visible {
+  background: var(--color-pink);
+  color: var(--color-ink);
+  border-color: var(--color-pink);
+}
+
+/* Ghost — outline style for secondary CTAs (YouTube, podcast). Cyan
+   border + cyan text. Inverts on hover (cyan fill, ink text). */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--color-cyan);
+  color: var(--color-ink);
+}
+
+/* Alternate ghost variant for sections where cyan is already the dominant
+   accent — swap to pink so the palette stays balanced in context. */
+.btn--ghost-pink {
+  color: var(--color-pink);
+  border-color: var(--color-pink);
+}
+
+.btn--ghost-pink:hover,
+.btn--ghost-pink:focus-visible {
+  background: var(--color-pink);
+  color: var(--color-ink);
+}
+
+/* XL — loudest tier, reserved for the merch block. */
+.btn--xl {
+  padding: 1.25rem 2.5rem;
+  font-size: 1.375rem;
+  letter-spacing: 0.08em;
+}
+
+@media (min-width: 768px) {
+  .btn--primary {
+    padding: 1.125rem 2.25rem;
+    font-size: 1.25rem;
+  }
+
+  .btn--xl {
+    padding: 1.5rem 3rem;
+    font-size: 1.625rem;
+  }
+}
+
+/* ==== Home: hero ======================================================= */
+/* Full-bleed ink background with pink triangle + cyan grid motifs lifted
+   from the logo. No photography — the type IS the design. */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding-block: 3.5rem 4rem;
+  isolation: isolate; /* keep decorative layers behind the container */
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.hero__logo {
+  width: 100%;
+  max-width: min(90vw, 520px);
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.hero__headline {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--color-paper);
+  font-size: clamp(2.25rem, 6vw + 1rem, 4.5rem);
+  margin: 0;
+  max-width: 18ch;
+}
+
+.hero__subhead {
+  font-size: clamp(1rem, 0.5vw + 0.9rem, 1.25rem);
+  color: var(--color-cyan);
+  margin: 0;
+  max-width: 48ch;
+  font-weight: 600;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  margin-top: 0.75rem;
+}
+
+/* Decorative pink triangle (zine motif) — bottom right, bleeds off edge. */
+.hero__decor--triangle {
+  position: absolute;
+  right: -4rem;
+  bottom: -4rem;
+  width: 18rem;
+  height: 18rem;
+  background: var(--color-pink);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  opacity: 0.85;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Cyan grid — full-bleed graph-paper backdrop behind hero content.
+   Low opacity so it reads as zine texture, not as competing UI. */
+.hero__decor--grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-cyan) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-cyan) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+  background-position: -1px -1px; /* aligns 1px lines crisply */
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+  /* Soft fade at the edges so the grid doesn't fight the section borders. */
+  -webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+          mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-block: 5rem 6rem;
+  }
+
+  .hero__logo {
+    max-width: 720px;
+  }
+
+  .hero__decor--triangle {
+    width: 26rem;
+    height: 26rem;
+    right: -6rem;
+    bottom: -6rem;
+  }
+
+  .hero__decor--grid {
+    background-size: 2rem 2rem; /* slightly larger cells on desktop for legible texture */
+  }
+}
+
+/* ==== Home: merch block ================================================ */
+/* Cyan background — the complement to the ink hero. Pink+cyan alternation
+   across sections keeps neither color dominant. CTA flips to ink so it
+   reads loudest on cyan, and it uses .btn--xl so it outsizes the hero CTA. */
+
+.merch-block {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-cyan);
+  color: var(--color-ink);
+  padding-block: 4rem;
+  border-block: 4px solid var(--color-ink);
+  isolation: isolate;
+}
+
+.merch-block__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.merch-block__eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  padding: 0.25rem 0.625rem;
+  border: 2px solid var(--color-ink);
+}
+
+.merch-block__heading {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+  margin: 0;
+  font-size: clamp(2.75rem, 9vw + 1rem, 6rem);
+  max-width: 14ch;
+  line-height: 0.95;
+}
+
+.merch-block__pitch {
+  margin: 0;
+  max-width: 44ch;
+  font-size: clamp(1rem, 0.5vw + 0.95rem, 1.25rem);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+/* Decorative pink triangle bleeding off the left — echoes the hero
+   triangle on the opposite side for visual rhythm. */
+.merch-block__triangle {
+  position: absolute;
+  left: -4rem;
+  top: -3rem;
+  width: 16rem;
+  height: 16rem;
+  background: var(--color-pink);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .merch-block {
+    padding-block: 6rem;
+  }
+
+  .merch-block__inner {
+    gap: 1.25rem;
+  }
+
+  .merch-block__triangle {
+    width: 24rem;
+    height: 24rem;
+    left: -6rem;
+    top: -6rem;
+  }
+}
+
+/* ==== Home: about ====================================================== */
+/* Cream background — a beat of visual rest after the loud cyan merch
+   block. Type still carries the personality. */
+
+.about {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+.about__heading {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+  margin: 0 0 1.5rem;
+  color: var(--color-ink);
+}
+
+.about__body {
+  display: grid;
+  gap: 1rem;
+  max-width: 60ch;
+  font-size: 1.0625rem;
+}
+
+.about__body p {
+  margin: 0;
+}
+
+.about__pull {
+  margin: 1.25rem 0 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-left: 6px solid var(--color-pink);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(1.25rem, 1.5vw + 0.9rem, 1.75rem);
+  line-height: 1.15;
+  color: var(--color-ink);
+  letter-spacing: 0.02em;
+}
+
+/* ==== Home: watch + listen cards ======================================= */
+/* Paper background. Two zine-styled cards, alternating pink/cyan accents
+   so the palette stays balanced inside this section. */
+
+.watch-listen {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.watch-listen__heading {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+  margin: 0 0 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.75rem;
+  background: var(--color-paper);
+  border: 3px solid var(--color-ink);
+  border-radius: 6px;
+  box-shadow: 6px 6px 0 0 var(--color-ink);
+}
+
+.card__visual {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 4px;
+}
+
+.card__visual--youtube {
+  background: var(--color-cyan);
+  color: var(--color-ink);
+}
+
+.card__visual--podcast {
+  background: var(--color-pink);
+  color: var(--color-ink);
+}
+
+.card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.card__heading {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(1.375rem, 1.5vw + 0.9rem, 1.875rem);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.card__body {
+  margin: 0;
+  font-size: 1rem;
+  max-width: 40ch;
+}
+
+.card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .card {
+    padding: 2.25rem;
+  }
+}
+
+/* ==== Home: follow strip =============================================== */
+/* Ink background with alternating pink / cyan / ink tiles. Per SPEC:
+   neither pink nor cyan should dominate — the ink tiles break up any
+   solid run of one color. */
+
+.follow-strip {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.follow-strip__heading {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+  margin: 0 0 2rem;
+  color: var(--color-paper);
+}
+
+.follow-strip__tiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.follow-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 7rem;
+  padding: 1rem 1.125rem;
+  text-decoration: none;
+  border: 3px solid var(--color-ink);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: transform 150ms ease, background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.follow-tile__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: block;
+}
+
+.follow-tile__label {
+  font-size: 1.125rem;
+  line-height: 1.1;
+}
+
+.follow-tile--pink {
+  background: var(--color-pink);
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.follow-tile--cyan {
+  background: var(--color-cyan);
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.follow-tile--ink {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-paper);
+}
+
+.follow-tile:hover {
+  transform: translate(-2px, -2px);
+}
+
+.follow-tile:focus-visible {
+  outline: 3px solid var(--color-paper);
+  outline-offset: 3px;
+}
+
+.follow-tile--pink:hover,
+.follow-tile--pink:focus-visible {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-pink);
+}
+
+.follow-tile--cyan:hover,
+.follow-tile--cyan:focus-visible {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-cyan);
+}
+
+.follow-tile--ink:hover,
+.follow-tile--ink:focus-visible {
+  background: var(--color-pink);
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+@media (min-width: 768px) {
+  .follow-strip__tiles {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .follow-tile {
+    min-height: 8.5rem;
+    padding: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   Section 6 — Merch page
+   --------------------------------------------------------------------------
+   Small, scoped styles for merch.html. The merch Buy Button widget ships
+   its own responsive styles (Karla font, internal breakpoints), so this
+   block deliberately only provides:
+     - an ink-backed page header (matches home hero for visual continuity)
+     - a paper-backed shop section so the widget breathes
+     - a centered fallback message if the widget fails to render
+   ========================================================================== */
+
+.merch-page-header {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  position: relative;
+  overflow: hidden;
+}
+
+.merch-page-header__inner {
+  position: relative;
+  text-align: left;
+  max-width: 60rem;
+}
+
+.merch-page-header__eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  margin: 0 0 var(--space-2);
+}
+
+.merch-page-header__heading {
+  font-family: var(--font-display);
+  font-weight: 400; /* Alfa Slab One ships single-weight */
+  font-size: clamp(2.75rem, 8vw + 1rem, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--color-paper);
+  margin: 0;
+}
+
+.merch-page-header__rule {
+  display: block;
+  width: 4.5rem;
+  height: 0.4rem;
+  background-color: var(--color-pink);
+  margin: var(--space-3) 0 var(--space-3);
+}
+
+.merch-page-header__intro {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  max-width: 60ch;
+  color: var(--color-paper);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .merch-page-header__intro {
+    font-size: 1.25rem;
+  }
+}
+
+.merch-shop {
+  background-color: var(--color-paper);
+  padding-block: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .merch-shop {
+    padding-block: var(--space-8);
+  }
+}
+
+

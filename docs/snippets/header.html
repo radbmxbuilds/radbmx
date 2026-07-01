@@ -1,0 +1,48 @@
+<!--
+  RAD BMX Builds — canonical header + primary nav snippet.
+  ============================================================================
+  HOW TO USE
+    Copy the <header>...</header> block below verbatim into each HTML page
+    immediately inside <body>. There is no build step resolving partials —
+    this file is the single source of truth so the two pages don't drift.
+
+  PER-PAGE CUSTOMIZATION
+    On each page, mark the matching nav link as the current page by adding
+    BOTH of these to the matching <a>:
+        class="is-active"  aria-current="page"
+    On index.html  → mark the Home link.
+    On merch.html  → mark the Merch link.
+    (CSS targets `[aria-current="page"]` scoped to `.primary-nav` so the
+    active style only applies inside the nav — see styles.css.)
+  ============================================================================
+-->
+<header class="site-header">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-header__inner">
+    <a class="site-brand" href="index.html" aria-label="RAD BMX Builds home">
+      <img class="site-brand__mark" src="logos/image0.png" alt="RAD BMX Builds" width="48" height="48">
+    </a>
+    <nav aria-label="Primary">
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Toggle menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul id="primary-nav" class="primary-nav">
+        <li class="primary-nav__item">
+          <!-- On index.html: add class="is-active" aria-current="page" -->
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="primary-nav__item">
+          <!-- On merch.html: add class="is-active" aria-current="page" (keep nav-link--merch) -->
+          <a class="nav-link nav-link--merch" href="merch.html">Merch</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
