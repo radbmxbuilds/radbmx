@@ -5,14 +5,11 @@ Static marketing site. Live at radbmxbuilds.com. No build step, no framework —
 - **Preview:** `python3 -m http.server` → http://localhost:8000 (assets use relative paths, so local matches production)
 - **Deploy:** push to `main` — Pages serves `main` / root.
 
-## Launch checklist
+## Launch status
 
-The site is intentionally dormant pre-launch (`noindex` on every page, no `CNAME`). To go live:
+Live and indexable: custom domain (`CNAME`) active, DNS pointed at GitHub Pages, **Enforce HTTPS** on, and `noindex` removed from `index.html` / `merch.html`. `404.html` keeps `noindex` by design.
 
-1. Remove `<meta name="robots" content="noindex">` from `index.html` and `merch.html`.
-2. Re-add the domain: `printf 'radbmxbuilds.com\n' > CNAME` (or Settings → Pages → Custom domain).
-3. Point DNS at GitHub Pages, then tick **Enforce HTTPS** in Settings → Pages.
-4. Submit `sitemap.xml` in Google Search Console.
+Remaining: submit `sitemap.xml` in Google Search Console so the pages get crawled.
 
 ## Regenerating brand assets
 

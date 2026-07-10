@@ -8,8 +8,6 @@
   <meta name="description" content="Shirts, hats, stickers, hoodies. Shop RAD BMX Builds merch. Orders are fulfilled fast by our merch partner.">
 
   <link rel="canonical" href="https://radbmxbuilds.com/merch.html">
-  <!-- LAUNCH: remove the noindex below before go-live (see README launch checklist) -->
-  <meta name="robots" content="noindex">
 
   <!-- Favicons (generated from logos/image0.png - see README) -->
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -38,6 +36,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;600;700&display=swap">
+
+  <!-- Shopify Buy Button: warm the connections the SDK will use so its request
+       waterfall starts with DNS/TCP/TLS already done, and start the SDK download
+       during parse. crossorigin is set ONLY on the Storefront API origin (CORS
+       fetches); the SDK script and product images are same-mode (no-cors), so a
+       crossorigin hint there would open the wrong connection / double-fetch. -->
+  <link rel="preconnect" href="https://sdks.shopifycdn.com">
+  <link rel="preconnect" href="https://bunker-branding-co.myshopify.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.shopify.com">
+  <link rel="preload" as="script" href="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js">
 
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
