@@ -479,6 +479,19 @@ h4 {
   margin-top: 0.75rem;
 }
 
+/* Lift the hero CTAs off the busy triangle/grid decor behind them so both
+   buttons stay legible — a soft dark shadow separates their edges from the
+   pink triangle and cyan grid. */
+.hero__ctas .btn {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 150ms ease, background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.hero__ctas .btn:hover,
+.hero__ctas .btn:focus-visible {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+}
+
 /* Decorative pink triangle (zine motif) — bottom right, bleeds off edge. */
 .hero__decor--triangle {
   position: absolute;
@@ -650,6 +663,36 @@ h4 {
 .card .btn {
   align-self: flex-start;
   margin-top: auto;
+}
+
+/* Card CTAs sit on a white card, where the cyan/pink ghost outlines read
+   faint (cyan-on-white especially). Fill each with its card's accent color
+   + ink text for strong contrast, and echo the card's hard offset shadow so
+   they read as sticker-style buttons. Ordered so the pink override (Podbean,
+   which carries both ghost classes) wins over the cyan base. */
+.card .btn--ghost {
+  background: var(--color-cyan);
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+}
+
+.card .btn--ghost:hover,
+.card .btn--ghost:focus-visible {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+
+.card .btn--ghost-pink {
+  background: var(--color-pink);
+  color: var(--color-ink);
+}
+
+.card .btn--ghost-pink:hover,
+.card .btn--ghost-pink:focus-visible {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 @media (min-width: 768px) {
