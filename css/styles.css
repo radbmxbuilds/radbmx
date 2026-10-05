@@ -16,7 +16,7 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   Google Fonts — HTML <head> block (copy into index.html and merch.html)
+   Google Fonts — HTML <head> block (copy into index.html)
    --------------------------------------------------------------------------
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -235,154 +235,10 @@ h4 {
   display: block;
 }
 
-/* --------------------------------------------------------------------------
-   Mobile menu toggle — hamburger built from three spans. Hidden at
-   tablet+ where the nav is always visible.
-   -------------------------------------------------------------------------- */
-
-.nav-toggle {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 2.5rem;
-  height: 2rem;
-  padding: 0.375rem;
-  background: transparent;
-  border: 2px solid var(--color-paper);
-  border-radius: 4px;
-  cursor: pointer;
-  color: inherit;
-}
-
-.nav-toggle:focus-visible {
-  outline: 2px solid var(--color-cyan);
-  outline-offset: 2px;
-}
-
-.nav-toggle__bar {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: currentColor;
-}
-
-/* --------------------------------------------------------------------------
-   Primary nav — mobile-first.
-     base (<768px): hidden by default; when [data-menu-open] on the <ul>,
-                    it drops down below the header as a full-width panel.
-     tablet+:       inline on the right; toggle is hidden.
-   -------------------------------------------------------------------------- */
-
-.primary-nav {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: none; /* hidden at mobile until opened */
-}
-
-.primary-nav[data-menu-open] {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--color-ink);
-  padding: var(--space-2) 1.25rem var(--space-3);
-  border-bottom: 2px solid var(--color-ink-soft);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-}
-
-.primary-nav__item {
-  display: block;
-}
-
-/* Nav link base */
-.nav-link {
-  display: inline-block;
-  padding: 0.625rem 0.875rem;
-  color: var(--color-paper);
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  font-weight: 400; /* Alfa Slab One ships at 400 */
-  border-bottom: 3px solid transparent; /* reserve space so hover doesn't shift layout */
-}
-
-.nav-link:hover,
-.nav-link:focus-visible {
-  border-bottom-color: var(--color-cyan);
-  outline: none;
-}
-
-.nav-link:focus-visible {
-  outline: 2px solid var(--color-cyan);
-  outline-offset: 2px;
-}
-
-/* Active page — scoped to nav links only (belt and braces: class OR aria). */
-.primary-nav .nav-link.is-active,
-.primary-nav .nav-link[aria-current="page"] {
-  border-bottom-color: var(--color-pink);
-  border-bottom-width: 3px;
-}
-
-/* Merch link — CTA hierarchy: merch nav wins over Home visually.
-   font-size 1.1875rem (19px) at weight 700 qualifies as WCAG "large bold"
-   (≥14pt bold), so pink-on-ink at ~3.4:1 passes AA for large text. */
-.nav-link--merch {
-  background: var(--color-pink);
-  color: var(--color-ink);
-  border-bottom-color: transparent;
-  font-weight: 700;
-  font-size: 1.1875rem;
-}
-
-.nav-link--merch:hover,
-.nav-link--merch:focus-visible {
-  background: var(--color-cyan);
-  color: var(--color-ink);
-  border-bottom-color: transparent;
-}
-
-/* When merch link is active, keep the pink fill and add an ink underline
-   accent so the active state is still distinguishable from hover. */
-.primary-nav .nav-link--merch.is-active,
-.primary-nav .nav-link--merch[aria-current="page"] {
-  background: var(--color-pink);
-  color: var(--color-ink);
-  box-shadow: inset 0 -3px 0 0 var(--color-ink);
-  border-bottom-color: transparent;
-}
-
-/* Tablet+ — inline nav, hide hamburger. */
+/* Tablet+ — larger brand mark. */
 @media (min-width: 768px) {
   .site-brand__mark {
     max-height: 48px;
-  }
-
-  .nav-toggle {
-    display: none;
-  }
-
-  .primary-nav,
-  .primary-nav[data-menu-open] {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-2);
-    position: static;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-  }
-
-  /* Pill shape for the merch CTA at tablet+. */
-  .nav-link--merch {
-    border-radius: 999px;
-    padding-inline: 1.125rem;
   }
 }
 
@@ -483,7 +339,7 @@ h4 {
    Section 5 — Home page components
    --------------------------------------------------------------------------
    Styles below are scoped to the home page (index.html). Order matches
-   the home page section order: buttons, hero, merch block, about,
+   the home page section order: buttons, hero, about,
    watch+listen cards, follow strip. Safe to delete as a block if the
    home page is ever rebuilt.
    ========================================================================== */
@@ -492,7 +348,6 @@ h4 {
 /* Boxy, tracked, display-font buttons sized for the zine aesthetic.
    Hierarchy enforced at the CSS level:
      .btn--primary  > .btn--ghost  (primary has a solid fill + larger padding)
-     .btn--xl       adds a further size bump for the merch-block CTA
    This hierarchy is SPEC-level (R2, CTA hierarchy) — do not flatten. */
 
 .btn {
@@ -536,21 +391,6 @@ h4 {
   color: var(--color-ink);
 }
 
-/* Variant used on cyan backgrounds (merch block): invert the fill so the
-   button still contrasts. Ink fill on cyan = strongest possible weight. */
-.btn--on-cyan {
-  background: var(--color-ink);
-  color: var(--color-paper);
-  border-color: var(--color-ink);
-}
-
-.btn--on-cyan:hover,
-.btn--on-cyan:focus-visible {
-  background: var(--color-pink);
-  color: var(--color-ink);
-  border-color: var(--color-pink);
-}
-
 /* Ghost — outline style for secondary CTAs (YouTube, podcast). Cyan
    border + cyan text. Inverts on hover (cyan fill, ink text). */
 .btn--ghost {
@@ -578,22 +418,10 @@ h4 {
   color: var(--color-ink);
 }
 
-/* XL — loudest tier, reserved for the merch block. */
-.btn--xl {
-  padding: 1.25rem 2.5rem;
-  font-size: 1.375rem;
-  letter-spacing: 0.08em;
-}
-
 @media (min-width: 768px) {
   .btn--primary {
     padding: 1.125rem 2.25rem;
     font-size: 1.25rem;
-  }
-
-  .btn--xl {
-    padding: 1.5rem 3rem;
-    font-size: 1.625rem;
   }
 }
 
@@ -704,97 +532,9 @@ h4 {
   }
 }
 
-/* ==== Home: merch block ================================================ */
-/* Cyan background — the complement to the ink hero. Pink+cyan alternation
-   across sections keeps neither color dominant. CTA flips to ink so it
-   reads loudest on cyan, and it uses .btn--xl so it outsizes the hero CTA. */
-
-.merch-block {
-  position: relative;
-  overflow: hidden;
-  background: var(--color-cyan);
-  color: var(--color-ink);
-  padding-block: 4rem;
-  border-block: 4px solid var(--color-ink);
-  isolation: isolate;
-}
-
-.merch-block__inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.merch-block__eyebrow {
-  margin: 0;
-  font-family: var(--font-body);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-weight: 700;
-  font-size: 0.875rem;
-  color: var(--color-ink);
-  background: var(--color-paper);
-  padding: 0.25rem 0.625rem;
-  border: 2px solid var(--color-ink);
-}
-
-.merch-block__heading {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: var(--color-ink);
-  margin: 0;
-  font-size: clamp(2.75rem, 9vw + 1rem, 6rem);
-  max-width: 14ch;
-  line-height: 0.95;
-}
-
-.merch-block__pitch {
-  margin: 0;
-  max-width: 44ch;
-  font-size: clamp(1rem, 0.5vw + 0.95rem, 1.25rem);
-  font-weight: 600;
-  color: var(--color-ink);
-}
-
-/* Decorative pink triangle bleeding off the left — echoes the hero
-   triangle on the opposite side for visual rhythm. */
-.merch-block__triangle {
-  position: absolute;
-  left: -4rem;
-  top: -3rem;
-  width: 16rem;
-  height: 16rem;
-  background: var(--color-pink);
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-  opacity: 0.9;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@media (min-width: 768px) {
-  .merch-block {
-    padding-block: 6rem;
-  }
-
-  .merch-block__inner {
-    gap: 1.25rem;
-  }
-
-  .merch-block__triangle {
-    width: 24rem;
-    height: 24rem;
-    left: -6rem;
-    top: -6rem;
-  }
-}
-
 /* ==== Home: about ====================================================== */
-/* Cream background — a beat of visual rest after the loud cyan merch
-   block. Type still carries the personality. */
+/* Cream background — a beat of visual rest after the ink hero.
+   Type still carries the personality. */
 
 .about {
   background: var(--color-cream);
@@ -1036,85 +776,6 @@ h4 {
   .follow-tile {
     min-height: 8.5rem;
     padding: 1.25rem;
-  }
-}
-
-/* ==========================================================================
-   Section 6 — Merch page
-   --------------------------------------------------------------------------
-   Small, scoped styles for merch.html. The merch Buy Button widget ships
-   its own responsive styles (Karla font, internal breakpoints), so this
-   block deliberately only provides:
-     - an ink-backed page header (matches home hero for visual continuity)
-     - a paper-backed shop section so the widget breathes
-     - a centered fallback message if the widget fails to render
-   ========================================================================== */
-
-.merch-page-header {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
-  position: relative;
-  overflow: hidden;
-}
-
-.merch-page-header__inner {
-  position: relative;
-  text-align: left;
-  max-width: 60rem;
-}
-
-.merch-page-header__eyebrow {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-cyan);
-  margin: 0 0 var(--space-2);
-}
-
-.merch-page-header__heading {
-  font-family: var(--font-display);
-  font-weight: 400; /* Alfa Slab One ships single-weight */
-  font-size: clamp(2.75rem, 8vw + 1rem, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  color: var(--color-paper);
-  margin: 0;
-}
-
-.merch-page-header__rule {
-  display: block;
-  width: 4.5rem;
-  height: 0.4rem;
-  background-color: var(--color-pink);
-  margin: var(--space-3) 0 var(--space-3);
-}
-
-.merch-page-header__intro {
-  font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.55;
-  max-width: 60ch;
-  color: var(--color-paper);
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .merch-page-header__intro {
-    font-size: 1.25rem;
-  }
-}
-
-.merch-shop {
-  background-color: var(--color-paper);
-  padding-block: var(--space-6);
-}
-
-@media (min-width: 768px) {
-  .merch-shop {
-    padding-block: var(--space-8);
   }
 }
 

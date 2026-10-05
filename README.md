@@ -1,13 +1,13 @@
 # RAD BMX Builds
 
-Static marketing site. Live at radbmxbuilds.com. No build step, no framework — plain HTML/CSS/JS served from the repo root by GitHub Pages.
+Static marketing site. Live at radbmxbuilds.com. No build step, no framework — plain HTML and CSS served from the repo root by GitHub Pages. Single content page (`index.html`) plus a branded `404.html`.
 
 - **Preview:** `python3 -m http.server` → http://localhost:8000 (assets use relative paths, so local matches production)
 - **Deploy:** push to `main` — Pages serves `main` / root.
 
 ## Launch status
 
-Live and indexable: custom domain (`CNAME`) active, DNS pointed at GitHub Pages, **Enforce HTTPS** on, and `noindex` removed from `index.html` / `merch.html`. `404.html` keeps `noindex` by design.
+Live and indexable: custom domain (`CNAME`) active, DNS pointed at GitHub Pages, **Enforce HTTPS** on, and `noindex` removed from `index.html`. `404.html` keeps `noindex` by design.
 
 Remaining: submit `sitemap.xml` in Google Search Console so the pages get crawled.
 
@@ -62,7 +62,3 @@ file favicon.ico                                         # -> MS Windows icon re
 sips -g pixelWidth -g pixelHeight apple-touch-icon.png   # -> 180 x 180
 sips -g pixelWidth -g pixelHeight og-image.png           # -> 1200 x 630
 ```
-
-## Buy Button
-
-The merch page embeds a third-party Buy Button from the merch partner's hosted SDK (`buy-button/latest/...`), intentionally **unpinned** (`/latest/`) per the vendor's distribution pattern. If the widget renders oddly or stops loading, check the vendor's changelog first. The storefront access token in `docs/snippets/buyButton.html` is a **public** storefront token (safe to commit) — do not swap in an admin/private API key.

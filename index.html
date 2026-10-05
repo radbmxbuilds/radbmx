@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>RAD BMX Builds | Custom 80s/90s Retro BMX Bikes</title>
-  <meta name="description" content="Veteran-owned custom retro BMX builds. Shop merch, watch the channel, and tune in to the podcast from RAD BMX Builds.">
+  <meta name="description" content="Veteran-owned custom retro BMX builds. Watch the channel and tune in to the podcast from RAD BMX Builds.">
 
   <link rel="canonical" href="https://radbmxbuilds.com/">
 
@@ -20,7 +20,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://radbmxbuilds.com/">
   <meta property="og:title" content="RAD BMX Builds | Custom 80s/90s Retro BMX Bikes">
-  <meta property="og:description" content="Veteran-owned custom retro BMX builds. Shop merch, watch the channel, and tune in to the podcast.">
+  <meta property="og:description" content="Veteran-owned custom retro BMX builds. Watch the channel and tune in to the podcast.">
   <meta property="og:image" content="https://radbmxbuilds.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -29,7 +29,7 @@
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RAD BMX Builds | Custom 80s/90s Retro BMX Bikes">
-  <meta name="twitter:description" content="Veteran-owned custom retro BMX builds. Shop merch, watch the channel, and tune in to the podcast.">
+  <meta name="twitter:description" content="Veteran-owned custom retro BMX builds. Watch the channel and tune in to the podcast.">
   <meta name="twitter:image" content="https://radbmxbuilds.com/og-image.png">
 
   <!-- Structured data: Organization. sameAs mirrors the social links in the
@@ -59,12 +59,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;600;700&display=swap">
 
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/main.js" defer></script>
 </head>
 <body>
 <!-- ============================================================================
      Shared header - copied verbatim from docs/snippets/header.html.
-     Home link is marked active on this page (class="is-active" aria-current="page").
+     Brand mark only (no nav) — single content page.
      ============================================================================ -->
 <header class="site-header">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -72,26 +71,6 @@
     <a class="site-brand" href="index.html" aria-label="RAD BMX Builds home">
       <img class="site-brand__mark" src="logos/image0.png" alt="RAD BMX Builds" width="48" height="48">
     </a>
-    <nav aria-label="Primary">
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="primary-nav"
-        aria-label="Toggle menu">
-        <span class="nav-toggle__bar" aria-hidden="true"></span>
-        <span class="nav-toggle__bar" aria-hidden="true"></span>
-        <span class="nav-toggle__bar" aria-hidden="true"></span>
-      </button>
-      <ul id="primary-nav" class="primary-nav">
-        <li class="primary-nav__item">
-          <a class="nav-link is-active" href="index.html" aria-current="page">Home</a>
-        </li>
-        <li class="primary-nav__item">
-          <a class="nav-link nav-link--merch" href="merch.html">Merch</a>
-        </li>
-      </ul>
-    </nav>
   </div>
 </header>
 
@@ -116,33 +95,20 @@
       <h1 class="hero__headline">Custom retro BMX builds.</h1>
       <p class="hero__subhead">Veteran-owned. Old-school race and freestyle, rebuilt right.</p>
       <div class="hero__ctas">
-        <a class="btn btn--primary" href="merch.html">Shop Merch &rarr;</a>
-        <a class="btn btn--ghost"
+        <a class="btn btn--primary"
            href="https://www.youtube.com/c/RadBMXBuilds"
            target="_blank"
-           rel="noopener noreferrer">Watch on YouTube</a>
+           rel="noopener noreferrer">Watch on YouTube &rarr;</a>
+        <a class="btn btn--ghost btn--ghost-pink"
+           href="https://radbmxbuildspodcast.podbean.com"
+           target="_blank"
+           rel="noopener noreferrer">Listen to the Podcast</a>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       Merch block - cyan background (pink/cyan alternation: hero=ink+pink CTA,
-       merch=cyan+ink CTA). This is the primary conversion section.
-       ========================================================================== -->
-  <section class="merch-block" aria-labelledby="merch-block-heading">
-    <div class="merch-block__triangle" aria-hidden="true"></div>
-    <div class="container merch-block__inner">
-      <p class="merch-block__eyebrow">Rep the brand</p>
-      <h2 id="merch-block-heading" class="merch-block__heading">Grab the merch.</h2>
-      <p class="merch-block__pitch">
-        Shirts, hats, stickers, hoodies. Orders fulfilled fast by our merch partner.
-      </p>
-      <a class="btn btn--primary btn--xl btn--on-cyan" href="merch.html">Browse Merch &rarr;</a>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       About - cream background for visual rest after the loud merch block.
+       About - cream background for visual rest after the ink hero.
        ========================================================================== -->
   <section class="about section" aria-labelledby="about-heading">
     <div class="container about__inner">
